@@ -2,6 +2,7 @@ package br.com.moraespaulolucas.controleponto.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class RegistroPonto {
     private long idRegPonto;
@@ -9,6 +10,9 @@ public class RegistroPonto {
     private LocalDate dataRegistro;
     private LocalDateTime horaEntrada;
     private LocalDateTime horaSaida;
+
+    private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private DateTimeFormatter formatoDataHora = DateTimeFormatter.ofPattern("HH:mm - dd/MM/yyyy");
 
     public RegistroPonto() {
         this.idRegPonto = 0;
@@ -59,9 +63,11 @@ public class RegistroPonto {
     }
 
     public void apresentarRegistroPonto() {
+        System.out.println("====================================");
         System.out.println("Funcionário: "+this.func.getNome());
-        System.out.println("Data: "+this.getDataRegistro());
-        System.out.println("Horário de entrada: "+this.getHoraEntrada());
-        System.out.println("Horário de saída: "+this.getHoraSaida());
+        System.out.println("Data: "+this.getDataRegistro().format(this.formatoData));
+        System.out.println("Horário de entrada: "+this.getHoraEntrada().format(this.formatoDataHora));
+        System.out.println("Horário de saída: "+this.getHoraSaida().format(this.formatoDataHora));
+        System.out.println("====================================");
     }
 }
